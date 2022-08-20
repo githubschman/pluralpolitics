@@ -1,0 +1,66 @@
+@import '../../theme/core.scss';
+
+.home {
+  display: flex;
+  flex-direction: row;
+  padding: 0 50px;
+  flex: 1 1;
+  height: 95%;
+}
+
+.home-image {
+  max-width: 100%;
+  padding: 90px;
+}
+
+.home-image-mobile-block {
+  display: none;
+}
+
+.home-text-block {
+  margin: 40px 0 30px 0;
+  font-size: 25px;
+  line-height: 1.48;
+}
+
+.home-ul {
+  li {
+    font-size: 20px;
+    font-weight: 600;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .home {
+    padding: 20px;
+  }
+
+  .home-image-block {
+    display: none;
+  }
+
+  .home-text-block {
+    margin: 20px 0 15px 0;
+    font-size: 20px;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .home-image-mobile-block {
+    display: block;
+    text-align: center;
+
+    .home-image-mobile {
+      height: 200px;
+    }
+  }
+
+  .home-ul {
+    margin: 30px 0;
+
+    li {
+      font-size: 18px;
+    }
+  }
+}

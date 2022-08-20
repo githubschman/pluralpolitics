@@ -1,0 +1,101 @@
+@import '../../theme/core.scss';
+
+.faq {
+    margin-top: 46px;
+    text-align: center;
+}
+
+.mobile-content {
+    display: none;
+}
+
+.desktop-content {
+    display: block;
+    margin-top: 75px;
+}
+
+.header {
+    text-align: left;
+    max-width: 55%;
+    margin: auto;
+    margin-bottom: 20px !important;
+    margin-top: 50px !important;
+}
+
+.section {
+    text-align: left;
+    max-width: 55%;
+    margin: auto;
+    margin-bottom: 20px !important;
+    margin-top: 50px !important;
+}
+
+.paragraph {
+    max-width: 55%;
+    margin: auto;
+    text-align: left;
+}
+
+.expand-info {
+    margin-left: 50px;
+}
+
+@media (max-width: 768px) {
+    .section {
+        margin-top: 0px !important;
+        max-width: 100%;
+        margin: auto;
+        text-align: left;
+    }
+
+    .expand-opening {
+        margin: auto;
+    }
+
+    .expand-info {
+        margin-left: 0px;
+    }
+
+    h1 {
+        font-size: 25px !important;
+    }
+
+    .desktop-content {
+        display: none;
+    }
+
+    .mobile-content {
+        display: block;
+        margin: auto;
+        max-width: 90%;
+    }
+
+    .header {
+        max-width: 85%;
+        margin: auto;
+        text-align: left;
+    }
+
+    .paragraph {
+        max-width: 100%;
+        margin: 0px;
+        text-align: left;
+    }
+
+    h2 {
+        font-size: 18px !important;
+        margin: auto;
+        margin-bottom: 10px;
+        max-width: 85% !important;
+    }
+
+    .paragraph {
+        max-width: 85% !important;
+    }
+
+    .expand-sub-header {
+        text-align: left;
+        margin-bottom: 20px !important;
+        position: relative;
+    }
+}

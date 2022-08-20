@@ -1,0 +1,47 @@
+@import '../../theme/core.scss';
+
+.root {
+    flex: 1;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    padding: 30px 100px 0 100px;
+    width: 100vw;
+    font-size: 20px;
+}
+
+.nav-btn-group {
+    background-color: #333333;
+    position: fixed;
+    bottom: 0px;
+    width: 100vw;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 22px 100px;
+}
+
+.question-count {
+    font-size: 25px !important;
+    margin-bottom: 25px !important;
+}
+
+.choose-i-dont-know {
+    font-style: italic;
+    font-weight: 500;
+    margin-bottom: 40px;
+}
+
+@media (max-width: 768px) {
+    .root {
+        padding: 62px 25px 0 25px;
+        overflow-y: scroll;
+        height: 100vh;
+        padding-bottom: 500px;
+    }
+
+    .question-count {
+        text-align: left;
+    }
+}

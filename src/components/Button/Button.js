@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './button.scss'
-import Spinner from '../Spinner'
 
 const Button = ({
   className,
@@ -22,7 +21,7 @@ const Button = ({
     {...others}
   >
     {isLoading ? (
-      <Spinner color="white" isLoading />
+      <div>hi</div>
     ) : (
       <>
         {label}

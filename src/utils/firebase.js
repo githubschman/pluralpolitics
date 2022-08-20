@@ -1,4 +1,5 @@
-import firebase from 'firebase/app'
+import firebase from 'firebase/compat/app'
+import 'firebase/database'
 import 'firebase/auth'
 import 'firebase/firestore'
 import 'firebase/storage'
@@ -6,12 +7,8 @@ import 'firebase/performance'
 import 'firebase/analytics'
 import config from './config'
 
-firebase.initializeApp(config.firebase)
-firebase.analytics()
+const app = firebase.initializeApp(config.firebase)
 
-export const auth = firebase.auth()
-export const storage = firebase.storage().ref()
-export const performance = firebase.performance()
-export const firestore = firebase.firestore()
+// export const database = getDatabase(app)
 
-export default firebase
+export default app

@@ -5,6 +5,7 @@
   "description": "create-react-app based firebase, liter, formatter & test pre-setup project",
   "author": "Wataru Maeda <w.maeda.ca@gmail.com>",
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
@@ -12,23 +13,30 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "antd": "^4.21.0",
     "bootstrap": "^4.6.0",
-    "firebase": "^8.6.2",
+    "d3": "^7.4.4",
+    "firebase": "^9.8.3",
+    "lodash": "^4.17.21",
     "nprogress": "^0.2.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-google-recaptcha": "^2.1.0",
     "react-helmet": "^6.1.0",
     "react-redux": "^7.2.4",
+    "react-rough-notation": "^1.0.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-select": "^4.3.1",
+    "react-share": "^4.4.0",
     "react-spinners": "^0.10.6",
     "reactstrap": "^8.9.0",
     "redux": "^4.1.0",
     "redux-logger": "^3.0.6",
     "sass": "^1.45.1",
     "source-map-explorer": "^2.5.2",
+    "styled-components": "^5.3.5",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
@@ -104,5 +112,8 @@
       "yarn lint",
       "yarn test --watchAll=false --passWithNoTests"
     ]
+  },
+  "resolutions": {
+    "react-error-overlay": "6.0.9"
   }
 }

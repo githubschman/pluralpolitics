@@ -1,0 +1,17 @@
+{
+    "rawresults": {
+        "1.0.0": {
+            "123123123123": "stringofdataslkfjlskdjflskdjf"
+        }
+    },
+    "metricresults": {
+        "1.0.0": {
+            "expansiveness": {
+                "very": 1
+            },
+            "lowAwareness": {
+                "education": 1
+            }
+        }
+    }
+}

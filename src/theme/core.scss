@@ -1,7 +1,135 @@
-@import 'nprogress/nprogress';
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: #333;
+}
 
-@import '_functions';
-@import '_breakpoints';
-@import '_colors';
-@import '_fonts';
-@import '_button';
+#root {
+    height: 100%;
+}
+
+.round {
+    width: 140px;
+    height: 50px;
+    margin-top: 40px;
+    padding: 12px 21px;
+    border-radius: 25px !important;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// Antd overwrites
+
+.ant-layout {
+    background-color: white;
+    height: 100%;
+    min-width: 50%;
+}
+
+.layout {
+    background: white !important;
+
+    .ant-layout-content {
+        background-color: white;
+        flex: 1;
+        margin: auto;
+        min-width: 50%;
+    }
+
+    .ant-layout-footer {
+        background-color: white;
+        text-align: center;
+        position: fixed;
+        width: 100%;
+        bottom: 0px;
+    }
+}
+
+@media (max-width: 768px) {
+    #root {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 45px !important;
+        line-height: 1.78 !important;
+    }
+
+    .ant-layout {
+        flex-direction: column !important;
+    }
+
+    .comp-footer {
+        display: none;
+    }
+
+    .get-started {
+        margin: auto;
+    }
+
+    .ant-layout-content {
+        padding-bottom: 100px;
+        min-height: 100%;
+    }
+
+    .ant-collapse-header {
+        padding: 0px !important;
+    }
+}
+
+.ant-checkbox-group {
+    display: flex;
+    flex-direction: column;
+}
+
+h1.ant-typography {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 51px;
+    font-weight: 700;
+}
+
+.ant-typography {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.ant-checkbox-wrapper {
+    margin: 7.5px 0;
+}
+
+.nav-btn {
+    background-color: #585758;
+    border-color: #696969 !important;
+    width: 151px;
+    height: 46px;
+    font-size: 20px;
+    text-transform: uppercase;
+    margin: 0;
+
+    &:hover {
+        background-color: #696969 !important;
+        border-color: #696969 !important;
+    }
+
+    &:disabled {
+        background-color: #a1a1a1;
+        border-color: #a1a1a1 !important;
+    }
+
+}
+
+.ant-popover {
+    max-width: 500px;
+}
+
+.share-button {
+    display: flex !important;
+    align-items: center;
+    margin: 12px 0;
+
+    svg {
+        margin-right: 13px;
+    }
+}

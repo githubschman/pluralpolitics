@@ -1,0 +1,13 @@
+@import '../../theme/core.scss';
+
+.root {
+  form {
+    overflow-y: scroll !important;
+    max-height: 32vh !important;
+  }
+
+  .form-item {
+    border: 1px solid black;
+    padding: 37px;
+  }
+}

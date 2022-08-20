@@ -1,20 +1,19 @@
-import { useEffect } from 'react'
-import { Provider } from 'react-redux'
-import { loadFontIcons } from 'components/FontIcon'
-import store from 'utils/store'
+import 'antd/dist/antd.variable.min.css'
+import {ConfigProvider} from 'antd'
 import Router from './routes'
 
-function App() {
-  useEffect(() => {
-    loadFontIcons()
-  }, [])
+ConfigProvider.config({
+  theme: {
+    primaryColor: "#c4742d",
+    secondaryColor: "#215484",
+  }
+})
 
+function App() {
   return (
-    <Provider store={store}>
-      <div data-testid="app" className="app">
-        <Router />
-      </div>
-    </Provider>
+    <ConfigProvider>
+      <Router />
+    </ConfigProvider>
   )
 }
 

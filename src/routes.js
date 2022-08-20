@@ -1,48 +1,67 @@
-import React, { Suspense, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React, { Suspense } from 'react'
+import { Layout } from 'antd'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
-import { actions } from 'slices/app.slice'
-import { path } from 'utils/const'
 import Fallback from 'components/Fallback'
-import Spinner from 'components/Spinner'
+import Menu from 'components/Menu'
+import Footer from 'components/Footer'
+import './theme/core.scss'
 
-const Auth = React.lazy(() => import('./pages/auth'))
-const Dashboard = React.lazy(() => import('./pages/dashboard'))
+const Author = React.lazy(() => import('./pages/author'))
+const Home = React.lazy(() => import('./pages/home'))
+const Test = React.lazy(() => import('./pages/test'))
+const Results = React.lazy(() => import('./pages/results'))
+const FAQ = React.lazy(() => import('./pages/faq'))
+const About = React.lazy(() => import('./pages/about'))
+const Expand = React.lazy(() => import('./pages/expand'))
+
+const { Content } = Layout
 
 function Router() {
-  const dispatch = useDispatch()
-  const { checked, loggedIn } = useSelector((state) => state.app)
-
-  useEffect(() => {
-    dispatch(actions.authenticate())
-  }, [])
-
-  if (!checked) {
-    return (
-      <div className="app-loader-container">
-        <Spinner size="4rem" color="white" isLoading />
-      </div>
-    )
-  }
-
   return (
     <BrowserRouter>
       <Suspense fallback={<Fallback />}>
-        {!loggedIn ? (
-          <Switch>
-            <Route path="/">
-              <Auth />
+        <Switch>
+        <Layout className="layout">
+          <Menu />
+            <Route exact path="/">
+              <Content>
+                <Home />
+                <Footer />
+              </Content>
             </Route>
-            <Redirect to="/" />
-          </Switch>
-        ) : (
-          <Switch>
-            <Route path={path.dashboard}>
-              <Dashboard />
+            <Route exact path="/test">
+              <Content>
+                <Test />
+              </Content>
             </Route>
-            <Redirect to={path.dashboard} />
-          </Switch>
-        )}
+            <Route exact path="/results">
+              <Content>
+                <Results />
+              </Content>
+            </Route>
+            <Route exact path="/author">
+              <Content>
+                <Author />
+              </Content>
+            </Route>
+            <Route exact path="/about">
+              <Content>
+                <About />
+              </Content>
+            </Route>
+            <Route exact path="/expand">
+              <Content>
+                <Expand />
+              </Content>
+            </Route>
+            <Route exact path="/faq">
+              <Content>
+                <FAQ />
+              </Content>
+            </Route>
+          </Layout>
+          <Redirect to="/" />
+        </Switch>
       </Suspense>
     </BrowserRouter>
   )
