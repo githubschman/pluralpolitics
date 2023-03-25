@@ -10,7 +10,7 @@ const {Title, Paragraph} = Typography
 
 const WhoMadeTheTest = <div>
   <Paragraph className={styles.paragraph}>I’m Nate Coffman. I’m an American, aged 26, from Pennsylvania, living in Washington, D.C. where I work for the U.S. government. This test is a personal project.</Paragraph>
-  <Paragraph className={styles.paragraph}>I’m involved with a few projects re improving the quality of politics and governance in the U.S. and elsewhere, including <a target="_blank" rel="noreferrer" href="https://www.thereconstitution.com/">The Reconstitution</a>, & <a target="_blank" rel="noreferrer" href="https://www.youtube.com/channel/UCIuhGOD1cknRPV3HymQQhpA">Meta-Ideological Politics</a>. You can follow me on Twitter <a target="_blank" rel="noreferrer" href="https://twitter.com/nate_coffman">here</a> & consider becoming a patron <a target="_blank" rel="noreferrer" href="http://patreon.com/natecoffman">here</a>.</Paragraph>
+  <Paragraph className={styles.paragraph}>I’m involved with a few projects re improving the quality of politics and governance in the U.S. and elsewhere, including <a target="_blank" rel="noreferrer" href="https://www.thereconstitution.com/">The Reconstitution</a> & <a target="_blank" rel="noreferrer" href="https://www.youtube.com/channel/UCIuhGOD1cknRPV3HymQQhpA">Meta-Ideological Politics</a>. You can follow me on Twitter <a target="_blank" rel="noreferrer" href="https://twitter.com/nate_coffman">here</a> & consider becoming a patron <a target="_blank" rel="noreferrer" href="http://patreon.com/natecoffman">here</a>.</Paragraph>
   <Paragraph className={styles.paragraph}>I have a bachelors of science in political science & psychology & I owe my ability to make this test to my thesis advisor, the excellent Dr. Lydia Eckstein. If I did it right, it’s her doing. If I did it wrong, it’s mine.</Paragraph>
 </div>
 
@@ -149,7 +149,5 @@ const FAQ = () =>  (
     </Layout>
   )
 
-FAQ.propTypes = {}
-FAQ.defaultProps = {}
 
 export default FAQ

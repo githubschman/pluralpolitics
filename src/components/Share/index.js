@@ -42,7 +42,7 @@ const ShareModal: React.FC = ({diversityLevel, expansiveness, label}) => {
           <EmailShareButton
             className="share-button"
             subject="My Plural Politics Results"
-            body={`Hello! I just took the Plural Politics Test. It’s a refreshingly nuanced, innovative personality test that doesn’t box you in. I got a result of ${label}. My political expansiveness score is ${expansiveness} and my viewpoint diversity is ${diversityLevel}. Here’s a link to the test! Try it and show me your results!`}
+            body={`Hello! I just took the Plural Politics Test. It’s a refreshingly nuanced, innovative personality test that doesn’t box you in. I got a result of ${label}. My political assertiveness score is ${expansiveness} and my viewpoint diversity is ${diversityLevel}. Here’s a link to the test! Try it and show me your results!`}
             separator=" "
             url="https://pluralpolitics.com"
           >
@@ -69,13 +69,13 @@ const ShareModal: React.FC = ({diversityLevel, expansiveness, label}) => {
           </TumblrShareButton>
           <FacebookShareButton
             url="https://pluralpolitics.com"
-            quote={`I just got a result of ${label} on the Plural Politics Test. My political expansiveness score is ${expansiveness} and my viewpoint diversity is ${diversityLevel}. This is a refreshingly nuanced, innovative personality test that doesn’t box you in. Try it and show me your results!`}
+            quote={`I just got a result of ${label} on the Plural Politics Test. My political assertiveness score is ${expansiveness} and my viewpoint diversity is ${diversityLevel}. This is a refreshingly nuanced, innovative personality test that doesn’t box you in. Try it and show me your results!`}
             className="share-button"
           >
             <FacebookIcon size={32} round /> Facebook
           </FacebookShareButton>
           <TwitterShareButton
-              title={`I just got a result of ${label} on the Plural Politics Test. My political expansiveness score is ${expansiveness} and my viewpoint diversity is ${diversityLevel}. Try it and show me your results!`}
+              title={`I just got a result of ${label} on the Plural Politics Test. My political assertiveness score is ${expansiveness} and my viewpoint diversity is ${diversityLevel}. Try it and show me your results!`}
               url="https://pluralpolitics.com"
               hashtags={["PluralPolitics"]}
               className="share-button"

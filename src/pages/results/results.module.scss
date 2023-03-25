@@ -253,11 +253,28 @@
 
   .mobile-info {
     font-size: 14px;
-    // padding: 0px 16px;
+  }
+
+  .button-container-mobile {
+    display: block !important;
+  }
+
+  .button-container-desktop {
+    display: none !important;
   }
 }
 
 .hover-explanation-mobile {
+  display: none;
+}
+
+.button-container-desktop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-container-mobile {
   display: none;
 }
 

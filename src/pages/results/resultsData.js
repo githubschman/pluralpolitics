@@ -17,10 +17,10 @@ export const expansivenessInfo = {
 
 
 export const viewpointDiversityLevels = [
-    "Very Exclusive",
-    "Exclusive",
-    "Eclectic",
     "Very Eclectic",
+    "Eclectic",
+    "Exclusive",
+    "Very Exclusive",
   ]
 
 export const viewpointDiversityInfo = {
@@ -34,14 +34,14 @@ export const labels = {
     "Moderate Eclectic": "Moderate Centrist",
     "Strong Eclectic": "Expansive Pluralist",
     "Moderate Exclusive": "Soft Ideologue",
-    "Strong Exclusive": "Hard Ideologue"
+    "Strong Exclusive": "Hard Ideologue",
 }
 
 export const labelInfo = {
     "Moderate Centrist": <div>You’re a person who’s wary of big moves and big statements. You believe everyone has some good points and some bad points, and it’s hard to tell which is which, so we should take our time and be careful. You might sometimes go out and advocate for something impactful, but only in special cases.</div>,
-    "Expansive Pluralist": <div>You’re someone who gets excited about all points of view. You dislike boxing yourself in with labels. In politics, you’re unconcerned with being consistent or coherent. You’re not afraid to take strong stances and make big moves in whatever direction, regardless of which side endorses it, if it seems right to you.</div>,
+    "Expansive Pluralist": <div>You’re someone who gets excited about all points of view. You dislike boxing yourself in with labels. In politics, you’re unconcerned with seeming consistent or coherent compared with known political labels. You’re not afraid to take strong stances and make big moves in whatever direction, regardless of which side endorses it, if it seems right to you.</div>,
     "Soft Ideologue": <div>You’re pretty sure about the directions we need to take, being suspicious of certain ideologies and confident that your way of thinking is on the right track. However, you’re not fully committed - you’re not likely to go out and crusade for your point of view except in certain circumstances.</div>,
-    "Hard Ideologue": <div>You’re very sure about the directions we need to take, believing fully in your point of view and rejecting other ideologies that you see as wrongheaded. You’re committed to your cause. You are likely an active participant in the political sphere and you advocate for your beliefs with confidence.</div>
+    "Hard Ideologue": <div>You’re quite sure about the sort of directions we need to take, believing strongly in your point of view and applying a robust skepticism toward other ideologies that you see as wrongheaded. You’re committed to your cause. You are likely an active participant in the political sphere and you advocate for your beliefs with confidence.</div>
 }
 
 

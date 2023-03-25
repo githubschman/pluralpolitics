@@ -19,7 +19,7 @@ const LeftEconomics = <div className={styles.section}>
         <Paragraph className={styles["expand-info"]}>1879 - An analysis of poverty and ways to eradicate it</Paragraph>
       </li>
       <li>
-        <Paragraph>John Maynard Keynes, The General Theory of Employment, <a target="_blank" rel="noreferrer" href="https://www.files.ethz.ch/isn/125515/1366_KeynesTheoryofEmployment.pdf">Interest and Money</a></Paragraph>
+        <Paragraph>John Maynard Keynes, <a target="_blank" rel="noreferrer" href="https://www.files.ethz.ch/isn/125515/1366_KeynesTheoryofEmployment.pdf">The General Theory of Employment, Interest and Money</a></Paragraph>
         <Paragraph className={styles["expand-info"]}>1936 - The book that emboldened governments to intervene in the economy after the Great Depression</Paragraph>
       </li>
       <li>
@@ -31,7 +31,7 @@ const LeftEconomics = <div className={styles.section}>
         <Paragraph className={styles["expand-info"]}>2009 - A critique of capitalist practices leading to the Great Recession of 2007-9</Paragraph>
       </li>
       <li>
-        <Paragraph>David Graeber, Debt, <a target="_blank" rel="noreferrer" href="https://warwick.ac.uk/fac/arts/english/currentstudents/undergraduate/modules/fulllist/special/statesofdamage/syllabus201516/graeber-debt_the_first_5000_years.pdf">The First 5,000 Years</a></Paragraph>
+        <Paragraph>David Graeber, <a target="_blank" rel="noreferrer" href="https://warwick.ac.uk/fac/arts/english/currentstudents/undergraduate/modules/fulllist/special/statesofdamage/syllabus201516/graeber-debt_the_first_5000_years.pdf">Debt, The First 5,000 Years</a></Paragraph>
         <Paragraph className={styles["expand-info"]}>2011 - An anthropological study of debt and society</Paragraph>
       </li>
       <li>
@@ -45,7 +45,7 @@ const LeftEconomics = <div className={styles.section}>
     </ul>
 </div>
 
-const RightEconoics = <div className={styles.section}>
+const RightEconomics = <div className={styles.section}>
   <ul>
     <li>
       <Paragraph>Fridriech Hayek, <a target="_blank" rel="noreferrer" href="https://ctheory.sitehost.iu.edu/img/Hayek_The_Road_to_Serfdom.pdf">The Road to Serfdom</a></Paragraph>
@@ -127,12 +127,12 @@ const LibertyLoving = <div className={styles.section}>
       <Paragraph className={styles["expand-info"]}>1949 - A notable work of existentialism that launched the second wave of feminism</Paragraph>
     </li>
     <li>
-      <Paragraph>John Rawls, <a target="_blank" rel="noreferrer" href="https://giuseppecapograssi.files.wordpress.com/2014/08/rawls99.pdf">A Theory of Justice</a></Paragraph>
-      <Paragraph className={styles["expand-info"]}>1971 - A philosophical treatment of justice introducing the idea of the “original position”</Paragraph>
-    </li>
-    <li>
       <Paragraph>Martin Luther King, Jr., <a target="_blank" rel="noreferrer" href="https://www.csuchico.edu/iege/_assets/documents/susi-letter-from-birmingham-jail.pdf">“Letter from Birmingham Jail”</a></Paragraph>
       <Paragraph className={styles["expand-info"]}>1963 - King’s open letter defending civil disobedience against injustice</Paragraph>
+    </li>
+    <li>
+      <Paragraph>John Rawls, <a target="_blank" rel="noreferrer" href="https://giuseppecapograssi.files.wordpress.com/2014/08/rawls99.pdf">A Theory of Justice</a></Paragraph>
+      <Paragraph className={styles["expand-info"]}>1971 - A philosophical treatment of justice introducing the idea of the “original position”</Paragraph>
     </li>
     <li>
       <Paragraph>Martha Nussbaum, <a target="_blank" rel="noreferrer" href="academia.edu/28662520/Creating_Capabilities_The_Human_Development_Approach">Creating Capabilities: The Human Development Approach</a></Paragraph>
@@ -215,7 +215,7 @@ const InternationalRelations = <div className={styles.section} style={{"paddingB
   <ul>
   <li>
     <Paragraph>Thucydides, <a target="_blank" rel="noreferrer" href="http://academics.wellesley.edu/ClassicalStudies/CLCV102/Thucydides--MelianDialogue.html">“The Melian Dialogue”</a></Paragraph>
-    <Paragraph className={styles["expand-info"]}>5th century B.C.E. - A fictional take on negotiations between Athens and Melos and a foundational text of the realist school</Paragraph>
+    <Paragraph className={styles["expand-info"]}>5th century B.C.E. - A fictionalized take on negotiations between Athens and Melos and a foundational text of the realist school</Paragraph>
   </li>
   <li>
     <Paragraph>Joseph Nye, <a target="_blank" rel="noreferrer" href="https://www.jstor.org/stable/1148580">“Soft Power”</a></Paragraph>
@@ -223,7 +223,7 @@ const InternationalRelations = <div className={styles.section} style={{"paddingB
   </li>
   <li>
     <Paragraph>Henry Kissinger, <a target="_blank" rel="noreferrer" href="http://ijevanlib.ysu.am/wp-content/uploads/2020/05/1f6300e67784b164a9857efd25ed325b.pdf">Diplomacy</a></Paragraph>
-    <Paragraph className={styles["expand-info"]}>1994 - The former Secretary of State’s treaties one diplomacy</Paragraph>
+    <Paragraph className={styles["expand-info"]}>1994 - The former Secretary of State’s treatise on diplomacy</Paragraph>
   </li>
   <li>
     <Paragraph>Stephen Walt, <a target="_blank" rel="noreferrer" href="https://edisciplinas.usp.br/pluginfile.php/4886653/mod_resource/content/1/Stephen%20Walt%201998.pdf">“International Relations: One World, Many Theories”</a></Paragraph>
@@ -254,7 +254,7 @@ const Expand = () =>  (
           </Collapse>
           <Collapse ghost>
             <Panel className={styles.header} header={<Title level={4}>Right Economics</Title>} key="1">
-              {RightEconoics}
+              {RightEconomics}
             </Panel>
           </Collapse>
           <Collapse ghost>
@@ -273,7 +273,7 @@ const Expand = () =>  (
           <Title className={styles.header} level={2}>Left Economics</Title>
           {LeftEconomics}
           <Title className={styles.header} level={2}>Right Economics</Title>
-          {RightEconoics}
+          {RightEconomics}
           <Title className={styles.header} level={2}>Authority-Respecting</Title>
           {AuthorityRespecting}
           <Title className={styles.header} level={2}>Liberty-Loving</Title>
@@ -331,8 +331,5 @@ const Expand = () =>  (
       </Content>
     </Layout>
   )
-
-Expand.propTypes = {}
-Expand.defaultProps = {}
 
 export default Expand

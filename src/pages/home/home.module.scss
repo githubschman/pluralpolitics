@@ -64,3 +64,20 @@
     }
   }
 }
+
+.home-li-link {
+  margin-left: 0px;
+  padding-left: 0px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.home-landing-video {
+  max-width: 45vw;
+}
+
+@media (max-width: 768px) {
+  .home-landing-video {
+    max-width: 85vw;
+  }
+}

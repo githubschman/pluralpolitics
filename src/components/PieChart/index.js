@@ -4,7 +4,7 @@
 import React, {useState} from "react";
 import * as d3 from "d3";
 
-const Arc = ({ data, index, createArc, colors, textStr, mobile }) => {
+const Arc = ({ data, index, createArc, colors, mobile }) => {
 
   // eslint-disable-next-line no-unused-vars
   const [scaleAmount, setScaleAmount] = useState(1)
@@ -16,6 +16,7 @@ const Arc = ({ data, index, createArc, colors, textStr, mobile }) => {
     "0, -10"
   ]
 
+  // TODO: comment back in if we ever want to make the pie sections larger on hover
   const scaleUp = () => {
     // setScaleAmount(1.25)
   }
@@ -29,16 +30,6 @@ const Arc = ({ data, index, createArc, colors, textStr, mobile }) => {
   return (
     <g onMouseEnter={scaleUp} onMouseLeave={scaleDown} key={index} className="arc" transform={`scale(${scaleAmount}) translate(${transformArr[index]})`}>
       <path className="arc" d={createArc(data)} fill={colors(index)} />
-      {/*
-        <text
-        transform={`translate(${createArc.centroid(data)})`}
-        textAnchor="middle"
-        fill="white"
-        fontSize={fontSize}
-      >
-        {textStr}
-      </text>
-      */}
     </g>
   )
 }
@@ -50,24 +41,21 @@ const PieChart = props => {
     .value(1)
     .sort(null);
 
-  // const testInfo = [
-  //   1,
-  //   1,
-  //   1,
-  //   1.00,
-  // ]
-
   const createArc = (index) => {
     return (
         d3
         .arc()
         .innerRadius(innerRadius)
         .outerRadius((outerRadius * data[index].value) - (20 * data[index].value))
-        // .outerRadius(outerRadius * data[index].value)
     )
   };
 
-  const colors = d3.scaleOrdinal(["#06d6a0", "#ef476f", "#118ab2", "#ffd166"]);
+  // green 06d6a0
+  // pink ef476f
+  // blue 118ab2
+  // yellow ffd166
+
+  const colors = d3.scaleOrdinal(["#ffd166", "#ef476f", "#118ab2", "#06d6a0"]);
   const format = d3.format(".2f");
   const pieData = createPie(data);
 
@@ -84,7 +72,6 @@ const PieChart = props => {
             createArc={createArc(i)}
             colors={colors}
             format={format}
-            textStr={`${getPercent(data[i].value)}%`}
             mobile={mobile}
           />
         ))}

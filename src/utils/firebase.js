@@ -9,6 +9,4 @@ import config from './config'
 
 const app = firebase.initializeApp(config.firebase)
 
-// export const database = getDatabase(app)
-
 export default app

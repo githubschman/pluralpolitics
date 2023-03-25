@@ -1,3 +1,4 @@
+// These templates are used in the authoring page
 export const questionTemplate = {
     "version": "1.0.0",
     "bucket": "right-economics",

@@ -133,3 +133,17 @@ h1.ant-typography {
         margin-right: 13px;
     }
 }
+
+.ant-modal-content {
+    width: 50vw !important;
+
+    .ant-modal-footer {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .ant-modal-content {
+        width: auto !important;
+    }
+}

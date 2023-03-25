@@ -126,3 +126,13 @@
     }
   }
 }
+
+.about-video {
+  max-width: 45vw;
+}
+
+@media (max-width: 768px) {
+  .about-video {
+    max-width: 85vw;
+  }
+}

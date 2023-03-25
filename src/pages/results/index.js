@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react'
 import { Typography, Layout, Button, Popover, Collapse } from 'antd'
 import { RedoOutlined } from '@ant-design/icons'
 import {RoughNotation} from 'react-rough-notation'
-import { Redirect } from 'react-router-dom'
+import { Redirect,useHistory } from 'react-router-dom'
 import PieChart from '../../components/PieChart'
 import ShareModal from '../../components/Share'
 import {
@@ -47,9 +47,21 @@ export const metricsSections = [
 
 
 
-const Results = ({retake}) => {
+const Results = () => {
+  const history = useHistory()
+  const retakeTest = async () => {
+    await localStorage.removeItem("plural_politics_version")
+    await localStorage.removeItem("plural_politics_cqi")
+    await localStorage.removeItem("plural_politics_answers")
+    await localStorage.removeItem("plural_politics_metrics")
+    await localStorage.removeItem("plural_politics_low_awareness")
+    await localStorage.removeItem("plural_politics_expansiveness")
+    await localStorage.removeItem("plural_politics_diversity")
+    await localStorage.removeItem("plural_politics_test")
+    history.push('/test')
+    history.go(0) // TODO: fix this...
+  }
 
-  // const location = useLocation()
   const [data, setData] = useState([])
   const [lowAwareness, setLowAwareness] = useState([])
   const [lowAppreciation, setLowAppreciation] = useState([])
@@ -82,38 +94,52 @@ const Results = ({retake}) => {
 
     // set diversity
     if (storedDiversity) {
-      if (storedDiversity <= .25) {
+      if (storedDiversity <= 3.75) {
         setViewpointDiversityLevel(viewpointDiversityLevels[0])
-      } else if (storedDiversity <= .5) {
+      } else if (storedDiversity <= 7.5) {
         setViewpointDiversityLevel(viewpointDiversityLevels[1])
-      } else if (storedDiversity <= .75) {
+      } else if (storedDiversity <= 11.25) {
         setViewpointDiversityLevel(viewpointDiversityLevels[2])
-      } else if (storedDiversity >= .76) {
+      } else if (storedDiversity >= 11.26) {
         setViewpointDiversityLevel(viewpointDiversityLevels[3])
       }
     }
 
-    if (storedExpansiveness) {
-      if (storedDiversity <= .25) {
-        setExpansiveness(expansivenessLevels[0])
-      } else if (storedDiversity <= .50) {
-        setExpansiveness(expansivenessLevels[1])
-      } else if (storedDiversity <= .75) {
-        setExpansiveness(expansivenessLevels[2])
-      } else if (storedDiversity >= .76) {
-        setExpansiveness(expansivenessLevels[3])
+    // See if the user has "strong" politics towards one area individually
+    // if so, update the expansiveness terminology
+    const expansivenessStrength = JSON.parse(storedMetrics).filter(d => d.value >= .83); // 25/30
+    let strongPoliticalLeanings = false;
+    if (expansivenessStrength && expansivenessStrength.length >= 1) { // "libertarian check"
+      // sort by greatest
+      const maxVal = Math.max(...expansivenessStrength.map(d => d.value))
+      if (maxVal >= .9) { // 27/30
+        setExpansiveness("Very Strong")
+      } else {
+        setExpansiveness("Strong")
+      }
+      strongPoliticalLeanings = true;
+    } else if (storedExpansiveness) { // The average of questions selected / all questions
+      if (storedExpansiveness <= .25) {
+        setExpansiveness(expansivenessLevels[0]) // very moderate
+      } else if (storedExpansiveness <= .50) {
+        setExpansiveness(expansivenessLevels[1]) // moderate
+      } else if (storedExpansiveness <= .75) {
+        setExpansiveness(expansivenessLevels[2]) // strong
+      } else if (storedExpansiveness >= .76) {
+        setExpansiveness(expansivenessLevels[3]) // very strong
       }
     }
 
+    // if Right-econ = (25 to 26) or Left-econ = (25 to 26) or Auth = (25 to 26) or Lib = (25 to 26), then Expansiveness = STRONG
+    // if Right-econ = (27 to 30) or Left-econ = (27 to 30) or Auth = (27 to 30) or Lib = (27 to 30), then Expansiveness = VERY STRONG
+
     if (storedExpansiveness && storedDiversity) {
-      const exLabel = storedExpansiveness >= .5 ? 'Strong' : 'Moderate'
-      const divLabel = storedDiversity <= .5 ? 'Exclusive' : 'Eclectic'
+      // eslint-disable-next-line no-nested-ternary
+      const exLabel = (strongPoliticalLeanings || storedExpansiveness > .5) ? 'Strong' : 'Moderate'
+      const divLabel = storedDiversity >= 7.5 ? 'Exclusive' : 'Eclectic' // 7.5 > Exclusive 
       setLabel(labels[`${exLabel} ${divLabel}`])
     }
-    // "Moderate Eclectic": "Moderate Centrist",
-    // "Strong Eclectic": "Expansive Pluralist",
-    // "Moderate Exclusive": "Soft Ideologue",
-    // "Strong Exclusive": "Hard Ideologue"
+
   }, [])
 
   const placement = ["leftTop", "rightTop", "leftBottom", "rightBottom"]
@@ -136,21 +162,31 @@ const Results = ({retake}) => {
     return <Redirect to="/test" />
   }
 
-  //   {/* lowAppreciation.length > 0 && 
-  //   <div>
-  //     {lowAppreciation.map((topic) => <Paragraph key={topic}>Based on your <span className={styles["results-bold"]}>low appreciation</span> of <span className={styles["results-bold"]}>{topic}</span> may want to read up on: <a href="/">{topic}</a></Paragraph>)}
-  //   </div>
-  // */}
-  // {/* lowAwareness.length > 0 && 
-  //   <div>
-  //     {lowAwareness.map((topic) => <Paragraph key={topic}>Based on your <span className={styles["results-bold"]}>low awareness</span> of <span className={styles["results-bold"]}>{topic}</span>, you may want to read up on: <a href="/">{topic}</a></Paragraph>)}
-  //   </div>
-  // */}
-
   return (
     <Layout className={styles.root}>
       {data.length > 0 &&
         <Content className={styles["chart-data"]}>
+          <div className={styles["button-container-mobile"]}>
+            <div className={styles["button-container"]}>
+              <ShareModal diversityLevel={diversityLevel} expansiveness={expansiveness} label={label} />
+              <Button
+                type="primary"
+                className={styles["results-btn"]}
+                style={{"marginLeft": "10px"}}
+                onClick={goToDiscord}
+              >
+                Join the Discord
+              </Button>
+              <Button
+                className={styles["results-btn"]}
+                style={{"marginLeft": "10px"}}
+                icon={<RedoOutlined />}
+                onClick={retakeTest}
+              >
+                Retake Test
+              </Button>
+            </div>
+          </div>
           <div className={styles["chart-container-mobile"]}>
             <div className={styles["chart-labels"]}>
               {data.map((d, i) => <Paragraph className={styles[`chart-label-${i}`]} key={d.label}>{d.label}</Paragraph>)}
@@ -171,30 +207,7 @@ const Results = ({retake}) => {
               />
             </div>
           </div>
-          <div className={styles["button-container"]}>
-            <ShareModal diversityLevel={diversityLevel} expansiveness={expansiveness} label={label} />
-            <Button
-              type="primary"
-              className={styles["results-btn"]}
-              style={{"marginLeft": "10px"}}
-              onClick={goToDiscord}
-            >
-              Join the Discord
-            </Button>
-            {retake && 
-              <Button
-                className={styles["results-btn"]}
-                style={{"marginLeft": "10px"}}
-                icon={<RedoOutlined />}
-                onClick={retake}
-              >
-                Retake Test
-              </Button>
-            }
-          </div>
-
           <Paragraph className={styles["results-header"]}>You are a{label === 'Expansive Pluralist' ? 'n' : ''}: <span className={styles["annotate-title-mobile"]}><span className={styles["results-bold"]}>{label}</span></span>&nbsp;&nbsp;&nbsp;<RoughNotation className={styles["annotate-title-desktop"]} animate animationDelay="1000" show type="box" color="#0d5089" strokeWidth={3}><span className={styles["results-bold"]}>{label}</span></RoughNotation></Paragraph>
-          {/* <Paragraph className={[styles["results-bold"], styles["hover-explanation-desktop"]]}>What does this mean?</Paragraph> */}
           <Paragraph className={styles["hover-explanation-desktop"]}>{labelInfo[label]}</Paragraph>
           <Collapse defaultActiveKey={['1']} ghost>
             <Panel className={styles["hover-explanation-mobile"]} header={<Title level={4}>You are a{label === 'Expansive Pluralist' ? 'n' : ''}: {label}</Title>} key="1">      
@@ -205,16 +218,15 @@ const Results = ({retake}) => {
           <Paragraph className={styles["results-header"]}>Your politics are: <span className={styles["annotate-title-mobile"]}><span className={styles["results-bold"]}>{expansiveness}</span></span>&nbsp;&nbsp;<RoughNotation className={styles["annotate-title-desktop"]} animate animationDelay="1000" show type="box" color="#0d5089" strokeWidth={3}><span className={styles["results-bold"]}>{expansiveness}</span></RoughNotation></Paragraph>
           {/* <Paragraph className={[styles["results-bold"], styles["hover-explanation-desktop"]]}>What does this mean?</Paragraph> */}
           <Paragraph className={styles["hover-explanation-desktop"]}>{expansivenessInfo[expansiveness]}</Paragraph>
-          <Collapse ghost>
+          <Collapse defaultActiveKey={['1']} ghost>
             <Panel className={styles["hover-explanation-mobile"]} header={<Title level={4}>Your politics are: {expansiveness}</Title>} key="1">      
               <Paragraph className={styles["hover-explanation-mobile"]}>{expansivenessInfo[expansiveness]}</Paragraph>
             </Panel>
           </Collapse>
 
           <Paragraph className={styles["results-header"]}>Your viewpoint diversity is: <span className={styles["annotate-title-mobile"]}><span className={styles["results-bold"]}>{diversityLevel}</span></span>&nbsp;&nbsp;&nbsp;<RoughNotation  className={styles["annotate-title-desktop"]} animate animationDelay="1000" show type="box" color="#0d5089" strokeWidth={3}><span className={styles["results-bold"]}>{diversityLevel}</span></RoughNotation></Paragraph>
-          {/* <Paragraph className={[styles["results-bold"], styles["hover-explanation-desktop"]]}>What does this mean?</Paragraph> */}
           <Paragraph className={styles["hover-explanation-desktop"]}>{viewpointDiversityInfo[diversityLevel]}</Paragraph>
-          <Collapse ghost>
+          <Collapse defaultActiveKey={['1']} ghost>
             <Panel className={styles["hover-explanation-mobile"]} header={<Title level={4}>Your viewpoint diversity is: {diversityLevel}</Title>} key="1">      
               <Paragraph className={styles["hover-explanation-mobile"]}>{viewpointDiversityInfo[diversityLevel]}</Paragraph>
             </Panel>
@@ -223,7 +235,7 @@ const Results = ({retake}) => {
           <div className={styles["quadrant-explanation-mobile"]}>
             <Collapse ghost>
               {infoContent.map((info, i) => (
-                  <Panel className={styles["hover-explanation-mobile"]} header={<Title level={4}>What does {infoContentTitle[i]} mean?</Title>} key="1">      
+                <Panel className={styles["hover-explanation-mobile"]} header={<Title level={4}>What does {infoContentTitle[i]} mean?</Title>} key={infoContentTitle[i]}>      
                   <Paragraph className={styles["hover-explanation-mobile"]}>{info}</Paragraph>
                 </Panel>
               ))}
@@ -233,13 +245,34 @@ const Results = ({retake}) => {
       }
       {data.length > 0 &&
         <Content className={[styles["chart-content"]]}>
+        <div className={styles["button-container-desktop"]}>
+          <div className={styles["button-container"]}>
+            <ShareModal diversityLevel={diversityLevel} expansiveness={expansiveness} label={label} />
+            <Button
+              type="primary"
+              className={styles["results-btn"]}
+              style={{"marginLeft": "10px"}}
+              onClick={goToDiscord}
+            >
+              Join the Discord
+            </Button>
+            <Button
+              className={styles["results-btn"]}
+              style={{"marginLeft": "10px"}}
+              icon={<RedoOutlined />}
+              onClick={retakeTest}
+            >
+              Retake Test
+            </Button>
+          </div>
+        </div>
           <div className={styles["chart-container-desktop"]}>
             <div className={styles["chart-labels"]}>
               {data.map((d, i) => <Paragraph className={styles[`chart-label-${i}`]} key={d.label}>{d.label}</Paragraph>)}
             </div>
             <div className={styles["chart-lines"]}>
               {data.map((d, i) =>
-                  <Popover placement={placement[i]} content={infoContent[i]} trigger="hover">
+                  <Popover key={`chart-line-${d.label}`} placement={placement[i]} content={infoContent[i]} trigger="hover">
                     <div className={styles[`line-${i}`]} key={`${d.label}-line`} />
                   </Popover>
                 )
@@ -263,8 +296,5 @@ const Results = ({retake}) => {
     </Layout>
   )
 }
-
-Results.propTypes = {}
-Results.defaultProps = {}
 
 export default Results

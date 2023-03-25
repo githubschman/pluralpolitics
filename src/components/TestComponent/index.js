@@ -22,13 +22,6 @@ const TestComponent = ({ testData, questionIndex, version }) => {
   const [isSkipped, setIsSkipped] = useState(false)
 
   useEffect(() => {
-    // // redirect to results if test is complete
-    // const testComplete = localStorage.getItem("plural_politics_version")
-    // if (testComplete) {
-    //   history.push({pathname: "/results"})
-    //   return;
-    // }
-    // set setCurrentQuestionIndex by localstorage
     const storedIndex = localStorage.getItem("plural_politics_cqi");
     const storedAnswers = localStorage.getItem("plural_politics_answers");
     const storedIndexInt = parseInt(storedIndex, 10);
@@ -48,7 +41,7 @@ const TestComponent = ({ testData, questionIndex, version }) => {
 
 
   useEffect(() => {
-    // set setCurrentQuestionIndex by localstorage
+    // set setCurrentQuestionIndex by local storage
     setCheckedList(allAnswers[currentQuestionIndex] || [])
     setPercent(Math.floor(currentQuestionIndex/testData.length * 100))
     // set whether the question has been skipped or not
@@ -81,7 +74,7 @@ const TestComponent = ({ testData, questionIndex, version }) => {
     const leftEcon = data.find(d => d.text === "left-economics").value;
     const authority = data.find(d => d.text === "authority-respecting").value;
     const liberty = data.find(d => d.text === "liberty-loving").value;
-    return Math.abs(((rightEcon - leftEcon) + (leftEcon - liberty) + (liberty - authority) + (authority - rightEcon) + (rightEcon - liberty) + (authority - leftEcon)) / 6)
+    return (Math.abs(rightEcon - leftEcon) + Math.abs(leftEcon - liberty) + Math.abs(liberty - authority) + Math.abs(authority - rightEcon) + Math.abs(rightEcon - liberty) + Math.abs(authority - leftEcon)) / 6
   }
 
   const getExpansiveness = (data) => {
@@ -180,10 +173,10 @@ const TestComponent = ({ testData, questionIndex, version }) => {
         }
         {!skipLimitHit && testData[currentQuestionIndex] && 
           <>        
+          <Paragraph className={styles["choose-i-dont-know"]}>You can check as many boxes as you agree with. Or choose Skip to move on.</Paragraph>
           <Paragraph>
-          {testData[currentQuestionIndex].text}
+            {testData[currentQuestionIndex].text}
           </Paragraph>
-          <Paragraph className={styles["choose-i-dont-know"]}>You can choose none if you don&rsquo;t know</Paragraph>
           
           <Checkbox.Group
               id={`Checkbox-Group-${currentQuestionIndex}`}
@@ -210,8 +203,5 @@ const TestComponent = ({ testData, questionIndex, version }) => {
     </div>
   )
 }
-
-TestComponent.propTypes = {}
-TestComponent.defaultProps = {}
 
 export default TestComponent

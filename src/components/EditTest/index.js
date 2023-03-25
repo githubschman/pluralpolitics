@@ -4,7 +4,6 @@
 import React, {useState, useEffect} from 'react'
 import { useHistory } from 'react-router-dom'
 
-// import {CloseOutlined} from '@ant-design/icons'
 import debounce from 'lodash/debounce';
 import {
     Form,
@@ -22,8 +21,6 @@ import database from '../../utils/database'
     const [testVersion, setTestVersion] = useState(null)
     const [testData, setTestData] = useState(null)
     const history = useHistory()
-
-    // const submitTestData = () => {}
 
     const updateTestData = (updatedTestData) => {
       setTestData(updatedTestData)
@@ -80,28 +77,6 @@ import database from '../../utils/database'
       updateTestData(updatedTestData)
     }
 
-    // const deleteQuestion = (questionIndex) => {
-    //   const updatedTestData = [...testData]
-    //   updatedTestData.splice(questionIndex, 1)
-    //   setTestData(updatedTestData)
-    //   form.setFieldsValue({ first_name: 'John' });
-    // }
-
-    // const deleteAnswer = async (questionIndex, answerIndex) => {
-    //   const updatedTestData = [...testData]
-    //   updatedTestData[questionIndex].answers = updatedTestData[questionIndex].answers.filter((a,i) => i !== parseInt(answerIndex, 10));
-    //   updatedTestData[questionIndex].answers.forEach((answer, j) => {
-    //     console.log(`question-label-${questionIndex}-${j}`, answer.label)
-    //     form.setFieldsValue({ 
-    //       [`question-label-${questionIndex}-${j}`]: answer.label,
-    //       [`question-version-${questionIndex}-${j}`]: answer.version,
-    //       [`question-weight-result-${questionIndex}-${j}`]: answer.weight.result,
-    //       [`question-weight-number-${questionIndex}-${j}`]: answer.weight.number,
-    //     });
-    //   })
-    //   await setTestData(updatedTestData)
-    // }
-
     const goToTest = () => {
       history.push('/test')
     }
@@ -136,12 +111,6 @@ import database from '../../utils/database'
       return <Spin size="large" />
     }
 
-  //   <Button
-  //   onClick={() => deleteAnswer(i, j)}
-  // >
-  //   Delete answer
-  // </Button>
-
     return (
       <div>
         <Form
@@ -161,7 +130,6 @@ import database from '../../utils/database'
           <Button onClick={updateTestVersionInDb}>Update Test Version</Button>
           {testData && testData.length > 0 && testData.map((question, i) => (
             <Form.Item key={`editing-question-${i}`}>
-              {/* <Button onClick={() => deleteQuestion(i)} shape="circle" icon={<CloseOutlined />} /> */}
               <h1>Question #{i + 1}</h1>
               <Form.Item shouldUpdate label="Version" >
                 <Input
@@ -261,9 +229,6 @@ import database from '../../utils/database'
       </div>
     );
 };
-  
-  EditTest.propTypes = {}
-  EditTest.defaultProps = {}
-  
-  export default EditTest
+
+export default EditTest
   
