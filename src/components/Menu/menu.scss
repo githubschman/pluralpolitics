@@ -7,7 +7,6 @@
 }
 
 .nav-button {
-
   &:active {
     background-color: rgba(0, 0, 0, 0);
 
@@ -49,7 +48,7 @@
     width: 100%;
     display: flex;
     // justify-content: center; (replacing social icons)
-    justify-content: end;
+    justify-content: flex-end;
   }
 
   &.social {
@@ -63,6 +62,11 @@
   }
 }
 
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
 .logo-img {
   width: 75px;
   height: 75px;
@@ -73,7 +77,6 @@
   display: flex;
   flex-direction: column;
   margin: 10px 0 0 0;
-  width: 100%;
 
   h1 {
     color: #040f4c;
@@ -98,6 +101,7 @@
 
   .mobile-menu {
     display: flex;
+    justify-content: space-between;
   }
 
   .mobile-ant-menu {
@@ -109,12 +113,17 @@
     width: 50%;
     right: 0px;
     z-index: 1000;
-    border: .1px solid rgb(0 0 0 / 2%);
+    border: 0.1px solid rgb(0 0 0 / 2%);
   }
 
   .ant-menu-title-content {
     text-align: center;
     margin-right: 13px;
+  }
+
+  .home-link {
+    display: flex;
+    align-items: center;
   }
 
   .logo-text {

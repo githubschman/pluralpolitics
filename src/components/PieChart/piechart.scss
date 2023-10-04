@@ -1,0 +1,28 @@
+.tooltip {
+  width: 40rem;
+  height: auto;
+  background-color: #fff;
+  box-shadow: 0 0 12px 0 #adadad;
+  padding: 1rem;
+  pointer-events: none;
+  font-size: 14px;
+  border-radius: 0.5rem;
+}
+
+#pie-chart {
+  transform: translate(130px, 150px);
+  -ms-transform: translate(130px, 150px);
+  -webkit-transform: translate(130px, 150px);
+  -moz-transform: translate(130px, 150px);
+  -o-transform: translate(130px, 150px);
+}
+
+@media (max-width: 768px) {
+  #pie-chart {
+    transform: translate(70px, 87px);
+    -ms-transform: translate(70px, 87px);
+    -webkit-transform: translate(70px, 87px);
+    -moz-transform: translate(70px, 87px);
+    -o-transform: translate(70px, 87px);
+  }
+}

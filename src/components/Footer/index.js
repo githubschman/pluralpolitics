@@ -1,11 +1,13 @@
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import database from '../../utils/database'
 
 const Footer = () => {
   const [lastUpdated, setLastUpdated] = useState(null)
 
+  const copyrightYear = lastUpdated?.split(' ')[3]
+
   useEffect(() => {
-      database.getLastUpdated(setLastUpdated)
+    database.getLastUpdated(setLastUpdated)
   }, [])
 
   return (
@@ -13,12 +15,12 @@ const Footer = () => {
       className="comp-footer"
       style={{
         textAlign: 'center',
+        marginTop: '2rem',
       }}
     >
-    © 2022 The Plural Politics | Last updated: {lastUpdated}
-  </div>
+      © {copyrightYear} Nathan Coffman | Last updated: {lastUpdated}
+    </div>
   )
 }
-
 
 export default Footer

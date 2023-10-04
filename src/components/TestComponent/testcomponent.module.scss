@@ -1,47 +1,91 @@
 @import '../../theme/core.scss';
 
 .root {
-    flex: 1;
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    padding: 30px 100px 0 100px;
-    width: 100vw;
-    font-size: 20px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-direction: column;
+  padding-top: 1.5rem;
+  width: 100%;
+  font-size: 20px;
+}
+
+.question-menu {
+  position: absolute;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  height: 90%;
+}
+
+.question-header {
+  width: 50%;
+  text-align: center;
 }
 
 .nav-btn-group {
-    background-color: #333333;
-    position: fixed;
-    bottom: 0px;
-    width: 100vw;
-    left: 0px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 22px 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & button {
+    margin: 3rem !important;
+  }
 }
 
 .question-count {
-    font-size: 25px !important;
-    margin-bottom: 25px !important;
+  font-size: 25px !important;
+  margin-bottom: 25px !important;
 }
 
 .choose-i-dont-know {
-    font-style: italic;
-    font-weight: 500;
-    margin-bottom: 40px;
+  font-style: italic;
+  font-weight: 500;
+  margin-bottom: 40px;
+}
+
+.skip-limit-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & button {
+    margin-bottom: 1rem;
+  }
+
+  .skip-page-skipped-questions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 90%;
+
+    & button {
+      margin: 1rem;
+    }
+  }
 }
 
 @media (max-width: 768px) {
-    .root {
-        padding: 62px 25px 0 25px;
-        overflow-y: scroll;
-        height: 100vh;
-        padding-bottom: 500px;
-    }
+  .root {
+    height: 100%;
+    justify-content: flex-start;
+  }
 
-    .question-count {
-        text-align: left;
+  .question-header {
+    width: 75%;
+    text-align: center;
+  }
+
+  .nav-btn-group {
+    padding: 0;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+
+    & button {
+      margin: 1rem !important;
     }
+  }
 }

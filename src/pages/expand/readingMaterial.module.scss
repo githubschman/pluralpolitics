@@ -1,0 +1,22 @@
+@import '../../theme/core.scss';
+
+.section {
+  text-align: left;
+  margin: auto 0;
+}
+
+.expand-info {
+  margin-left: 2rem;
+}
+
+@media (max-width: 500px) {
+  .section {
+    & ul {
+      padding-inline-start: 0;
+    }
+  }
+
+  .expand-info {
+    margin-left: 0;
+  }
+}

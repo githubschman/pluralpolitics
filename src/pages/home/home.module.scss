@@ -8,13 +8,13 @@
   height: 95%;
 }
 
-.home-image {
-  max-width: 100%;
-  padding: 90px;
-}
-
-.home-image-mobile-block {
-  display: none;
+.home-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto !important;
+  min-width: 50%;
 }
 
 .home-text-block {
@@ -31,13 +31,9 @@
 }
 
 @media (max-width: 768px) {
-
   .home {
     padding: 20px;
-  }
-
-  .home-image-block {
-    display: none;
+    height: 100%;
   }
 
   .home-text-block {
@@ -45,15 +41,6 @@
     font-size: 20px;
     line-height: 1.2;
     text-align: center;
-  }
-
-  .home-image-mobile-block {
-    display: block;
-    text-align: center;
-
-    .home-image-mobile {
-      height: 200px;
-    }
   }
 
   .home-ul {

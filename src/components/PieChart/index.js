@@ -1,83 +1,146 @@
+/* eslint-disable no-shadow */
 /* eslint-disable no-unused-vars */
-/* eslint-disable arrow-body-style */
-/* eslint-disable react/no-array-index-key */
-import React, {useState} from "react";
-import * as d3 from "d3";
+import React, { useEffect, useRef, useState } from 'react'
+import * as d3 from 'd3'
+import { infoContent, infoContentTitle } from './PieChartInfo'
+import './piechart.scss'
 
-const Arc = ({ data, index, createArc, colors, mobile }) => {
+const PieChart = ({
+  data,
+  width,
+  height,
+  innerRadius,
+  outerRadius,
+  translateX,
+  translateY,
+}) => {
+  const windowWidth = window.innerWidth
+  const pieChartRef = useRef()
+  const tooltipRef = useRef()
 
-  // eslint-disable-next-line no-unused-vars
-  const [scaleAmount, setScaleAmount] = useState(1)
-  // transform
-  const transformArr = [
-    "10, -10",
-    "10, 0",
-    "0, 0",
-    "0, -10"
+  const colors = [
+    '#ffd166',
+    '#ef476f',
+    '#118ab2',
+    '#06d6a0',
+    '#c4742e',
+    '#0DB0FC',
   ]
 
-  // TODO: comment back in if we ever want to make the pie sections larger on hover
-  const scaleUp = () => {
-    // setScaleAmount(1.25)
-  }
+  useEffect(() => {
+    const svg = d3.select(pieChartRef.current)
+    const values = data.map((val) => val.value)
 
-  const scaleDown = () => {
-    // setScaleAmount(1)
-  }
+    const radius = Math.min(width, height) / 2
 
-  const fontSize = mobile ? Math.floor(data.data.value * 100) / 5 : Math.floor(data.data.value * 100) / 2.5
+    const pieGenerator = d3.pie().sort(null)
+
+    const instructions = pieGenerator(values)
+
+    const arcGenerator = d3.arc().innerRadius(innerRadius)
+
+    const lineForLabels = d3
+      .arc()
+      .innerRadius(radius * 1)
+      .outerRadius(radius * 0.8)
+
+    svg
+      .selectAll('.slice')
+      .data(instructions)
+      .join('path')
+      .attr('class', 'slice')
+      .attr('fill', (d) => colors[d.index])
+      .style('scale', windowWidth > 768 ? '.85' : '1')
+      .style('stroke', 'white')
+      .style('stroke-width', '.5px')
+      .style('cursor', 'pointer')
+      .attr('d', (d) => {
+        const adjustedOuterRadius = outerRadius * d.data - 20 * d.data
+        return arcGenerator.outerRadius(adjustedOuterRadius)(d)
+      })
+      .on('mouseenter', (event, d) => {
+        const [x, y] = arcGenerator.innerRadius(radius * 0.95).centroid(d)
+        d3.select(tooltipRef.current)
+          .style('left', `${x - 500}px`)
+          .style('top', `${y + 100}px`)
+          .style('opacity', '1')
+          .style('width', '40rem')
+          .text(infoContent[d.index])
+      })
+      .on('mouseleave', (d) => {
+        d3.select(tooltipRef.current).style('opacity', '0')
+      })
+
+    svg
+      .selectAll('.polyLines')
+      .data(instructions)
+      .enter()
+      .append('polyline')
+      .attr('class', 'polyLines')
+      .attr('fill', 'none')
+      .style('stroke', 'black')
+      .style('stroke-width', '1px')
+      .attr('points', (d) => {
+        const posA = arcGenerator.innerRadius(radius * 0.5).centroid(d)
+        const posB = lineForLabels.centroid(d)
+        const posC = lineForLabels.centroid(d)
+        const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
+        posC[0] = radius * 0.9 * (midangle < Math.PI ? 1 : -1)
+
+        return [posA, posB, posC]
+      })
+
+    svg
+      .selectAll('.labels')
+      .data(instructions)
+      .enter()
+      .append('text')
+      .text((d) => infoContentTitle[d.index])
+      .attr('transform', (d) => {
+        const pos = lineForLabels.centroid(d)
+        const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
+        pos[0] = radius * 0.99 * (midangle < Math.PI ? 1 : -1)
+
+        return `translate(${pos})`
+      })
+      .style('text-anchor', (d) => {
+        const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
+        return midangle < Math.PI ? 'start' : 'end'
+      })
+      .style('font-size', '12px')
+      .style('cursor', 'pointer')
+      .on('mouseenter', (event, d) => {
+        const [x, y] = arcGenerator.innerRadius(radius * 0.95).centroid(d)
+        d3.select(tooltipRef.current)
+          .style('left', `${x - 500}px`)
+          .style('top', `${y + 100}px`)
+          .style('opacity', '1')
+          .style('width', '40rem')
+          .text(infoContent[d.index])
+      })
+      .on('mouseleave', (d) => {
+        d3.select(tooltipRef.current).style('opacity', '0')
+      })
+  }, [])
 
   return (
-    <g onMouseEnter={scaleUp} onMouseLeave={scaleDown} key={index} className="arc" transform={`scale(${scaleAmount}) translate(${transformArr[index]})`}>
-      <path className="arc" d={createArc(data)} fill={colors(index)} />
-    </g>
+    <div>
+      <svg
+        id="pie-chart"
+        height={height}
+        width={width}
+        overflow="visible"
+        ref={pieChartRef}
+      />
+      {windowWidth > 768 && (
+        <div
+          ref={tooltipRef}
+          className="tooltip"
+          style={{ position: 'absolute', opacity: 0, width: '0' }}
+        />
+      )}
+    </div>
   )
 }
 
-const PieChart = props => {
-  const {innerRadius, outerRadius, width, height, data, translateX, translateY, mobile} = props;
-  const createPie = d3
-    .pie()
-    .value(1)
-    .sort(null);
-
-  const createArc = (index) => {
-    return (
-        d3
-        .arc()
-        .innerRadius(innerRadius)
-        .outerRadius((outerRadius * data[index].value) - (20 * data[index].value))
-    )
-  };
-
-  // green 06d6a0
-  // pink ef476f
-  // blue 118ab2
-  // yellow ffd166
-
-  const colors = d3.scaleOrdinal(["#ffd166", "#ef476f", "#118ab2", "#06d6a0"]);
-  const format = d3.format(".2f");
-  const pieData = createPie(data);
-
-  const getPercent = (val) => Math.floor(val * 100)
-
-  return (
-    <svg width={width} height={height}>
-      <g transform={`translate(${translateX} ${translateY})`}>
-        {pieData.map((d, i) => (
-          <Arc
-            key={`${i}-arc`}
-            index={i}
-            data={d}
-            createArc={createArc(i)}
-            colors={colors}
-            format={format}
-            mobile={mobile}
-          />
-        ))}
-      </g>
-    </svg>
-  );
-};
-
-export default PieChart;
+export default PieChart

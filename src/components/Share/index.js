@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-curly-brace-presence */
-import { Button, Modal } from 'antd';
-import React, { useState } from 'react';
+import { Button, Modal } from 'antd'
+import React, { useState } from 'react'
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -14,30 +14,40 @@ import {
   RedditIcon,
   TumblrShareButton,
   TumblrIcon,
-} from "react-share";
+} from 'react-share'
 import styles from '../../pages/results/results.module.scss'
 
-const ShareModal: React.FC = ({diversityLevel, expansiveness, label}) => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
+const ShareModal = ({ diversityLevel, expansiveness, label }) => {
+  const [isModalVisible, setIsModalVisible] = useState(false)
 
   const showModal = () => {
-    setIsModalVisible(true);
-  };
+    setIsModalVisible(true)
+  }
 
   const handleOk = () => {
-    setIsModalVisible(false);
-  };
+    setIsModalVisible(false)
+  }
 
   const handleCancel = () => {
-    setIsModalVisible(false);
-  };
+    setIsModalVisible(false)
+  }
 
   return (
     <>
-      <Button className={styles["results-btn"]} type="primary" onClick={showModal}>
+      <Button
+        className={styles['results-btn']}
+        type="primary"
+        onClick={showModal}
+      >
         Share Your Results
       </Button>
-      <Modal title="Share" footer={null} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+      <Modal
+        title="Share"
+        footer={null}
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
         <div>
           <EmailShareButton
             className="share-button"
@@ -48,7 +58,10 @@ const ShareModal: React.FC = ({diversityLevel, expansiveness, label}) => {
           >
             <EmailIcon size={32} round /> Email
           </EmailShareButton>
-          <LinkedinShareButton url="https://pluralpolitics.com" className="share-button">
+          <LinkedinShareButton
+            url="https://pluralpolitics.com"
+            className="share-button"
+          >
             <LinkedinIcon size={32} round /> LinkedIn
           </LinkedinShareButton>
           <RedditShareButton
@@ -75,17 +88,17 @@ const ShareModal: React.FC = ({diversityLevel, expansiveness, label}) => {
             <FacebookIcon size={32} round /> Facebook
           </FacebookShareButton>
           <TwitterShareButton
-              title={`I just got a result of ${label} on the Plural Politics Test. My political assertiveness score is ${expansiveness} and my viewpoint diversity is ${diversityLevel}. Try it and show me your results!`}
-              url="https://pluralpolitics.com"
-              hashtags={["PluralPolitics"]}
-              className="share-button"
+            title={`I just got a result of ${label} on the Plural Politics Test. My political assertiveness score is ${expansiveness} and my viewpoint diversity is ${diversityLevel}. Try it and show me your results!`}
+            url="https://pluralpolitics.com"
+            hashtags={['PluralPolitics']}
+            className="share-button"
           >
-              <TwitterIcon size={32} round /> Twitter
+            <TwitterIcon size={32} round /> Twitter
           </TwitterShareButton>
         </div>
       </Modal>
     </>
-  );
-};
+  )
+}
 
-export default ShareModal;
+export default ShareModal

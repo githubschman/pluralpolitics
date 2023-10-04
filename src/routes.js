@@ -5,6 +5,7 @@ import Fallback from 'components/Fallback'
 import Menu from 'components/Menu'
 import Footer from 'components/Footer'
 import './theme/core.scss'
+// import { UnderConstruction } from './pages/UnderConstruction/UnderConstruction'
 
 const Author = React.lazy(() => import('./pages/author'))
 const Home = React.lazy(() => import('./pages/home'))
@@ -21,11 +22,12 @@ function Router() {
     <BrowserRouter>
       <Suspense fallback={<Fallback />}>
         <Switch>
-        <Layout className="layout">
-          <Menu />
+          <Layout className="layout">
+            <Menu />
             <Route exact path="/">
               <Content>
                 <Home />
+                {/* <UnderConstruction /> */}
                 <Footer />
               </Content>
             </Route>

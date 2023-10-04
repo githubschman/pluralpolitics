@@ -1,27 +1,20 @@
 // These templates are used in the authoring page
 export const questionTemplate = {
-    "version": "1.0.0",
-    "bucket": "right-economics",
-    "text": "Question text will go here",
-    "answers": [
-        {
-            "value": "a",
-            "label": "Lorem ipsum",
-            "version": "1.0.0",
-            "weight": {
-                "result": "right-economics",
-                "number": 5
-            }
-        }
-    ]
+  version: '1.0.0',
+  category: 'economics',
+  bucket: 'right-economics',
+  text: 'Question text will go here',
+  answers: [
+    {
+      value: 'a',
+      label: 'Lorem ipsum',
+      version: '1.0.0',
+    },
+  ],
 }
 
 export const answerTemplate = {
-    "value": "a",
-    "label": "Lorem ipsum",
-    "version": "1.0.0",
-    "weight": {
-        "result": "right-economics",
-        "number": 1
-    }
-};
+  value: 'a',
+  label: 'Lorem ipsum',
+  version: '1.0.0',
+}
