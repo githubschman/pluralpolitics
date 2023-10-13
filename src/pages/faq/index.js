@@ -293,9 +293,7 @@ const BiasedOrPartisan = () => {
         I’ve tried to be objective. People on the left sometimes say the test
         has a right-wing bias. Right-wingers sometimes say it has a left-wing
         bias. This tells me it’s relatively well calibrated & folks tend to{' '}
-        <a target="_blank" rel="noreferrer" href="/">
-          exaggerate the ubiquity of what they oppose.
-        </a>
+        exaggerate the ubiquity of what they oppose.
       </Paragraph>
       <Modal
         centered

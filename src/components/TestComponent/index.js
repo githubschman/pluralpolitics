@@ -443,8 +443,11 @@ const TestComponent = ({ testData, questionIndex, version }) => {
         )}
         {!skipLimitHit && testData[currentQuestionIndex] && (
           <>
-            <Paragraph>{testData[currentQuestionIndex].text}</Paragraph>
-
+            <Paragraph>
+              <div className={styles['question-container']}>
+                {testData[currentQuestionIndex].text}
+              </div>
+            </Paragraph>
             <Radio.Group
               value={selectedAnswers.answer}
               size="large"

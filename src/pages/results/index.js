@@ -83,14 +83,14 @@ const Results = () => {
     // See if the user has "strong" politics towards one area individually
     // if so, update the expansiveness terminology
     const expansivenessStrength = JSON.parse(storedMetrics).filter(
-      (d) => d.value >= 0.95,
+      (d) => d.value >= 0.7,
     )
 
     if (storedExpansiveness >= 0.83) {
       setExpansiveness(expansivenessLevels[3]) // very strong
     } else if (expansivenessStrength.length > 0) {
       const maxVal = Math.max(...expansivenessStrength.map((d) => d.value))
-      if (maxVal >= 0.9) {
+      if (maxVal >= 0.7) {
         setExpansiveness('Strong')
       }
     } else if (storedExpansiveness <= 0.33) {
@@ -170,7 +170,13 @@ const Results = () => {
             style={{ marginTop: '3rem' }}
             className={styles['results-header']}
           >
-            You are a{label === 'Expansive Pluralist' ? 'n' : ''}:{' '}
+            You are
+            {['a', 'e', 'i', 'o', 'u'].map(
+              (val) => val === label.charAt(0).toLowerCase(),
+            )
+              ? ' an'
+              : ' a'}
+            :{' '}
             <span className={styles['annotate-title-mobile']}>
               <span className={styles['results-bold']}>{label}</span>
             </span>
@@ -195,7 +201,14 @@ const Results = () => {
               className={styles['hover-explanation-mobile']}
               header={
                 <Title level={4}>
-                  You are a{label === 'Expansive Pluralist' ? 'n' : ''}: {label}
+                  You are{' '}
+                  {label
+                    .charAt(0)
+                    .toLowerCase()
+                    .includes(['a', 'e', 'i', 'o', 'u'])
+                    ? 'a'
+                    : ''}
+                  {label === 'Expansive Pluralist' ? 'n' : ''}: {label}
                 </Title>
               }
               key="1"
