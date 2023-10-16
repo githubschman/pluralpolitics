@@ -206,9 +206,9 @@ const Results = () => {
                     .charAt(0)
                     .toLowerCase()
                     .includes(['a', 'e', 'i', 'o', 'u'])
-                    ? 'a'
-                    : ''}
-                  {label === 'Expansive Pluralist' ? 'n' : ''}: {label}
+                    ? 'an'
+                    : 'a'}{' '}
+                  {label}
                 </Title>
               }
               key="1"
