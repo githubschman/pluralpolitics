@@ -206,8 +206,8 @@ const Results = () => {
                     .charAt(0)
                     .toLowerCase()
                     .includes(['a', 'e', 'i', 'o', 'u'])
-                    ? 'an'
-                    : 'a'}{' '}
+                    ? 'an:'
+                    : 'a:'}{' '}
                   {label}
                 </Title>
               }
