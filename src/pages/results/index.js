@@ -176,7 +176,7 @@ const Results = () => {
             )
               ? ' an'
               : ' a'}
-            :{' '}
+            :
             <span className={styles['annotate-title-mobile']}>
               <span className={styles['results-bold']}>{label}</span>
             </span>
@@ -201,14 +201,13 @@ const Results = () => {
               className={styles['hover-explanation-mobile']}
               header={
                 <Title level={4}>
-                  You are{' '}
-                  {label
-                    .charAt(0)
-                    .toLowerCase()
-                    .includes(['a', 'e', 'i', 'o', 'u'])
-                    ? 'an:'
-                    : 'a:'}{' '}
-                  {label}
+                  You are
+                  {['a', 'e', 'i', 'o', 'u'].map(
+                    (val) => val === label.charAt(0).toLowerCase(),
+                  )
+                    ? ' an'
+                    : ' a'}
+                  : {label}
                 </Title>
               }
               key="1"
