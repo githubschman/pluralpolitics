@@ -69,13 +69,13 @@ const Results = () => {
 
     // set diversity
     if (storedDiversity) {
-      if (storedDiversity <= 1.5) {
+      if (storedDiversity <= 1) {
         setViewpointDiversityLevel(viewpointDiversityLevels[0])
-      } else if (storedDiversity <= 3) {
+      } else if (storedDiversity <= 2.5) {
         setViewpointDiversityLevel(viewpointDiversityLevels[1])
-      } else if (storedDiversity <= 4.5) {
+      } else if (storedDiversity <= 3.9) {
         setViewpointDiversityLevel(viewpointDiversityLevels[2])
-      } else if (storedDiversity >= 6) {
+      } else if (storedDiversity > 3.9) {
         setViewpointDiversityLevel(viewpointDiversityLevels[3])
       }
     }
@@ -109,7 +109,7 @@ const Results = () => {
           : storedExpansiveness > 0.7
           ? 'Strong'
           : 'Moderate'
-      const divLabel = storedDiversity >= 3 ? 'Exclusive' : 'Eclectic'
+      const divLabel = storedDiversity >= 3.9 ? 'Exclusive' : 'Eclectic'
       setLabel(labels[`${exLabel} ${divLabel}`])
     }
   }, [])
@@ -171,11 +171,7 @@ const Results = () => {
             className={styles['results-header']}
           >
             You are
-            {['a', 'e', 'i', 'o', 'u'].map(
-              (val) => val === label.charAt(0).toLowerCase(),
-            )
-              ? ' an'
-              : ' a'}
+            {['A', 'E', 'I', 'O', 'U'].includes(label.charAt(0)) ? ' an' : ' a'}
             :
             <span className={styles['annotate-title-mobile']}>
               <span className={styles['results-bold']}>{label}</span>
@@ -202,9 +198,7 @@ const Results = () => {
               header={
                 <Title level={4}>
                   You are
-                  {['a', 'e', 'i', 'o', 'u'].map(
-                    (val) => val === label.charAt(0).toLowerCase(),
-                  )
+                  {['A', 'E', 'I', 'O', 'U'].includes(label.charAt(0))
                     ? ' an'
                     : ' a'}
                   : {label}
