@@ -109,7 +109,7 @@ const Results = () => {
           : storedExpansiveness > 0.7
           ? 'Strong'
           : 'Moderate'
-      const divLabel = storedDiversity >= 3.9 ? 'Exclusive' : 'Eclectic'
+      const divLabel = storedDiversity >= 2.5 ? 'Exclusive' : 'Eclectic'
       setLabel(labels[`${exLabel} ${divLabel}`])
     }
   }, [])
