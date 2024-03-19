@@ -1,0 +1,39 @@
+.privacy {
+  margin-top: 46px;
+  text-align: center;
+  height: auto !important;
+  padding-bottom: 5rem;
+}
+
+.paragraph {
+  max-width: 55%;
+  margin: auto;
+  text-align: left;
+  font-size: 1rem;
+}
+
+.header {
+  text-align: left;
+  max-width: 55%;
+  margin: auto;
+  margin-bottom: 20px !important;
+  margin-top: 50px !important;
+}
+
+.section {
+  text-align: left;
+  max-width: 55%;
+  margin: auto;
+  margin-bottom: 20px !important;
+  margin-top: 50px !important;
+}
+
+@media (max-width: 770px) {
+  .paragraph {
+    max-width: 80%;
+  }
+
+  .header {
+    max-width: 80%;
+  }
+}

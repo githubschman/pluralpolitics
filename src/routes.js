@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import Fallback from 'components/Fallback'
 import Menu from 'components/Menu'
 import Footer from 'components/Footer'
+import Privacy from './pages/privacy'
 import './theme/core.scss'
 // import { UnderConstruction } from './pages/UnderConstruction/UnderConstruction'
 
@@ -59,6 +60,11 @@ function Router() {
             <Route exact path="/faq">
               <Content>
                 <FAQ />
+              </Content>
+            </Route>
+            <Route exact path="/privacy">
+              <Content>
+                <Privacy />
               </Content>
             </Route>
           </Layout>

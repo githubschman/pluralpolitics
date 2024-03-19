@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { RoughNotation } from 'react-rough-notation'
 import { Typography, Layout, Collapse, Modal, Image } from 'antd'
+import { Link } from 'react-router-dom'
 import { images } from '../../assets'
 
 import styles from './faq.module.scss'
@@ -12,9 +13,10 @@ const { Title, Paragraph } = Typography
 const WhoMadeTheTest = (
   <div>
     <Paragraph className={styles.paragraph}>
-      I’m Nate Coffman. I’m an American, from Pennsylvania, living in
-      Washington, D.C. where I work for the U.S. government. This test is a
-      personal project.
+      I’m Nate Coffman. I’m an American from Pennsylvania living in Washington,
+      D.C. where I work for the U.S. government. This test is a personal
+      project. It’s not affiliated with any shareholders, investors, political
+      parties, or interest groups.
     </Paragraph>
     <Paragraph className={styles.paragraph}>
       You can follow me on Twitter{' '}
@@ -112,20 +114,8 @@ const HowIsThisDifferent = (
 const DoYouCollectAnyInfo = (
   <div>
     <Paragraph className={styles.paragraph}>
-      Yeah, a little bit. To give accurate secondary information I have to know
-      what everyone is scoring. But besides your answers, results & general
-      location, I’m not collecting anything else about you & yours.
-    </Paragraph>
-  </div>
-)
-
-const WhyDontOptOut = (
-  <div>
-    <Paragraph className={styles.paragraph}>
-      I wish I could but if I did it would skew the sample pretty significantly
-      because certain sorts of people are more willing to opt in than others.
-      The scores would be drastically less representative. It kinda has to be
-      all or none.
+      Only a little bit, and nothing personally identifying. Please see the
+      <Link href="/privacy">Privacy Notice</Link> for further information.
     </Paragraph>
   </div>
 )
@@ -371,20 +361,6 @@ const FAQ = () => (
             className={styles.header}
             header={
               <Title level={4}>
-                Why don’t you let people opt in or out of information
-                collection?
-              </Title>
-            }
-            key="1"
-          >
-            {WhyDontOptOut}
-          </Panel>
-        </Collapse>
-        <Collapse ghost>
-          <Panel
-            className={styles.header}
-            header={
-              <Title level={4}>
                 Isn’t there a bias toward Western frames and U.S. concerns?
               </Title>
             }
@@ -487,10 +463,6 @@ const FAQ = () => (
           Do you collect any information?
         </Title>
         {DoYouCollectAnyInfo}
-        <Title className={styles.header} level={2}>
-          Why don’t you let people opt in or out of information collection?
-        </Title>
-        {WhyDontOptOut}
         <Title className={styles.header} level={2}>
           Isn’t there a bias toward Western frames and U.S. concerns?
         </Title>

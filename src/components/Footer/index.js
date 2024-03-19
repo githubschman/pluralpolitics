@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import database from '../../utils/database'
 
 const Footer = () => {
@@ -18,7 +19,11 @@ const Footer = () => {
         marginTop: '2rem',
       }}
     >
-      © {copyrightYear} Nathan Coffman | Last updated: {lastUpdated}
+      <span>© {copyrightYear} Nathan Coffman</span>
+      <br />
+      <span>
+        Last updated: {lastUpdated} | <Link to="/privacy">Privacy Notice</Link>
+      </span>
     </div>
   )
 }
