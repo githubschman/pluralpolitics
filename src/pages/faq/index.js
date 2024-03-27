@@ -115,7 +115,7 @@ const DoYouCollectAnyInfo = (
   <div>
     <Paragraph className={styles.paragraph}>
       Only a little bit, and nothing personally identifying. Please see the
-      <Link href="/privacy">Privacy Notice</Link> for further information.
+      <Link to="/privacy"> Privacy Notice</Link> for further information.
     </Paragraph>
   </div>
 )
